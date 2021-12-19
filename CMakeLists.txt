@@ -22,6 +22,14 @@ add_library(
     source/lib.cpp
 )
 
+add_library(azul SHARED IMPORTED)
+set_target_properties(
+  azul PROPERTIES
+  IMPORTED_LOCATION "${AZUL_LINK_PATH}/azul.dll"
+  IMPORTED_IMPLIB "${AZUL_LINK_PATH}/azul.dll.lib"
+  INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/thirdparty/azul>"
+)
+
 target_include_directories(
     cpptest_lib ${warning_guard}
     PUBLIC
@@ -42,8 +50,7 @@ set_target_properties(
 )
 
 target_compile_features(cpptest_exe PRIVATE cxx_std_17)
-
-target_link_libraries(cpptest_exe PRIVATE cpptest_lib)
+target_link_libraries(cpptest_exe PRIVATE azul)
 
 # ---- Install rules ----
 

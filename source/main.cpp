@@ -1,12 +1,11 @@
 #include <iostream>
 #include <string>
 
-#include "lib.hpp"
+#include "azul-mini.h"
 
-auto main() -> int
-{
-  library lib;
-  std::string message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
+auto main() -> int {
+  auto vector =  AzSvgVector { 5.0, 10.0 };
+  auto normalized = AzSvgVector_normalize(&vector);
+  std::cout << normalized.x << normalized.y << std::endl;
   return 0;
 }
